@@ -28,7 +28,7 @@ const ResultsTable: React.FC<ResultsTableProps> = ({ results }) => {
   return (
     <div className="card mt-8 animate-slide-up overflow-hidden">
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-xl font-semibold text-gray-800">Tabel Simulasi Tahunan</h2>
+        <h2 className="text-xl font-semibold text-gray-800 dark:text-gray-200">Tabel Simulasi Tahunan</h2>
       </div>
       
       <div className="overflow-x-auto">
