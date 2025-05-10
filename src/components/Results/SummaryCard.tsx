@@ -10,6 +10,8 @@ interface SummaryCardProps {
 const SummaryCard: React.FC<SummaryCardProps> = ({ results }) => {
   if (!results.length) return null;
 
+  console.log('results', results);
+
   const retirementResults = results.filter(
     result => result.savingsForYear === 0
   );
@@ -33,6 +35,8 @@ const SummaryCard: React.FC<SummaryCardProps> = ({ results }) => {
     retirementSufficiencyPercentage >= 90 ? 'text-success-500' :
     retirementSufficiencyPercentage >= 70 ? 'text-success-500' :
     retirementSufficiencyPercentage >= 50 ? 'text-warning-500' : 'text-danger-500';
+
+  const firstSufficientYear = results.find(item => item.isSufficientForLiving === true);
 
   return (
     <div className="card mt-8 animate-slide-up">
@@ -74,7 +78,8 @@ const SummaryCard: React.FC<SummaryCardProps> = ({ results }) => {
             {sufficiencyStatus}
           </p>
           <p className="text-sm text-gray-500 mt-1">
-            {formatNumber(retirementSufficiencyPercentage, 0)}% tahun terpenuhi
+            {formatNumber(retirementSufficiencyPercentage, 0)}% terpenuhi
+            {sufficiencyStatus === 'Sangat Baik' ? ` pada usia ${firstSufficientYear?.age} tahun` : ''}
           </p>
         </div>
       </div>
