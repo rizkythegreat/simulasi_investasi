@@ -10,8 +10,6 @@ interface SummaryCardProps {
 const SummaryCard: React.FC<SummaryCardProps> = ({ results }) => {
   if (!results.length) return null;
 
-  console.log('results', results);
-
   const retirementResults = results.filter(
     result => result.savingsForYear === 0
   );
@@ -37,6 +35,15 @@ const SummaryCard: React.FC<SummaryCardProps> = ({ results }) => {
     retirementSufficiencyPercentage >= 50 ? 'text-warning-500' : 'text-danger-500';
 
   const firstSufficientYear = results.find(item => item.isSufficientForLiving === true);
+  
+  // Calculate total reinvested dividends before retirement
+  const totalReinvestedDividends = results
+    .filter(r => r.savingsForYear > 0)
+    .reduce((sum, r) => sum + r.reinvestedDividends, 0);
+
+  const totalStocksFromDividends = results
+    .filter(r => r.savingsForYear > 0)
+    .reduce((sum, r) => sum + r.stocksFromDividends, 0);
 
   return (
     <div className="card mt-8 animate-slide-up">
@@ -54,6 +61,11 @@ const SummaryCard: React.FC<SummaryCardProps> = ({ results }) => {
           <p className="text-sm text-gray-500 mt-1">
             {formatNumber(lastResult.cumulativeStocks)} lembar saham
           </p>
+          {totalStocksFromDividends > 0 && (
+            <p className="text-sm text-success-600 mt-1">
+              +{formatNumber(totalStocksFromDividends)} dari reinvestasi dividen
+            </p>
+          )}
         </div>
         
         <div className="bg-gray-50 p-4 rounded-lg">
@@ -67,6 +79,11 @@ const SummaryCard: React.FC<SummaryCardProps> = ({ results }) => {
           <p className="text-sm text-gray-500 mt-1">
             pada usia {lastResult.age} tahun
           </p>
+          {totalReinvestedDividends > 0 && (
+            <p className="text-sm text-success-600 mt-1">
+              Total reinvestasi: {formatCurrency(totalReinvestedDividends)}
+            </p>
+          )}
         </div>
         
         <div className="bg-gray-50 p-4 rounded-lg">

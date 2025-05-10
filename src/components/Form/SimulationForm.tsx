@@ -13,10 +13,11 @@ const SimulationForm: React.FC<SimulationFormProps> = ({ onSimulate }) => {
     savingsPerYear: 16000000,
     stockPrice: 22000,
     dividendYield: 15,
-    monthlyExpenses: 1500000
+    monthlyExpenses: 1500000,
+    reinvestDividends: false
   });
 
-  const handleInputChange = (field: keyof SimulationInput, value: number) => {
+  const handleInputChange = (field: keyof SimulationInput, value: number | boolean) => {
     setInputs(prev => ({
       ...prev,
       [field]: value
@@ -95,6 +96,22 @@ const SimulationForm: React.FC<SimulationFormProps> = ({ onSimulate }) => {
             prefix="Rp"
           />
         </div>
+        
+        <div className="mt-4">
+          <label className="flex items-center space-x-2 cursor-pointer">
+            <input
+              type="checkbox"
+              checked={inputs.reinvestDividends}
+              onChange={(e) => handleInputChange('reinvestDividends', e.target.checked)}
+              className="form-checkbox h-5 w-5 text-primary-500 rounded border-gray-300 focus:ring-primary-500"
+            />
+            <span className="text-gray-700">Reinvestasi Dividen sebelum pensiun</span>
+          </label>
+          <p className="text-sm text-gray-500 mt-1 ml-7">
+            Dividen yang diterima akan digunakan untuk membeli saham tambahan sampai masa pensiun
+          </p>
+        </div>
+
         <div className="mt-6">
           <button type="submit" className="btn-primary w-full">
             Hitung Simulasi

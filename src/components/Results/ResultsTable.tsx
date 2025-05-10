@@ -39,9 +39,11 @@ const ResultsTable: React.FC<ResultsTableProps> = ({ results }) => {
               <th scope="col" className="table-head">Usia</th>
               <th scope="col" className="table-head">Tabungan Tahunan</th>
               <th scope="col" className="table-head">Total Saham</th>
+              <th scope="col" className="table-head">Saham dari Dividen</th>
               <th scope="col" className="table-head">Harga Saham</th>
               <th scope="col" className="table-head">Dividen per Saham</th>
               <th scope="col" className="table-head">Total Dividen</th>
+              <th scope="col" className="table-head">Dividen Reinvestasi</th>
               <th scope="col" className="table-head">Nilai Aset</th>
               <th scope="col" className="table-head">Biaya Hidup</th>
               <th scope="col" className="table-head">Status</th>
@@ -54,9 +56,11 @@ const ResultsTable: React.FC<ResultsTableProps> = ({ results }) => {
                 <td className="table-cell">{result.age}</td>
                 <td className="table-cell">{formatCurrency(result.savingsForYear)}</td>
                 <td className="table-cell">{formatNumber(result.cumulativeStocks)}</td>
+                <td className="table-cell">{formatNumber(result.stocksFromDividends)}</td>
                 <td className="table-cell">{formatCurrency(result.stockPrice)}</td>
                 <td className="table-cell">{formatCurrency(result.dividendPerShare)}</td>
                 <td className="table-cell font-medium">{formatCurrency(result.totalDividends)}</td>
+                <td className="table-cell">{formatCurrency(result.reinvestedDividends)}</td>
                 <td className="table-cell font-medium">{formatCurrency(result.totalAssetValue)}</td>
                 <td className="table-cell">{formatCurrency(result.yearlyExpenses)}</td>
                 <td className="table-cell">

@@ -5,6 +5,7 @@ export interface SimulationInput {
   stockPrice: number;
   dividendYield: number;
   monthlyExpenses: number;
+  reinvestDividends: boolean;
 }
 
 export interface SimulationResult {
@@ -16,6 +17,8 @@ export interface SimulationResult {
   stockPrice: number;
   dividendPerShare: number;
   totalDividends: number;
+  reinvestedDividends: number;
+  stocksFromDividends: number;
   totalAssetValue: number;
   yearlyExpenses: number;
   isSufficientForLiving: boolean;

@@ -8,6 +8,7 @@ export const calculateSimulation = (input: SimulationInput): SimulationResult[] 
     stockPrice,
     dividendYield,
     monthlyExpenses,
+    reinvestDividends
   } = input;
 
   const yearlyExpenses = monthlyExpenses * 12;
@@ -32,26 +33,38 @@ export const calculateSimulation = (input: SimulationInput): SimulationResult[] 
     // Calculate current year's savings
     const savingsForYear = currentAge < retirementAge ? savingsPerYear : 0;
     
-    // Calculate stocks purchased this year
+    // Calculate stocks purchased this year from savings
     const stocksPurchased = savingsForYear / currentStockPrice;
-    
-    // Update cumulative stocks
-    cumulativeStocks += stocksPurchased;
     
     // Calculate dividend per share
     const dividendPerShare = currentStockPrice * currentDividendYield;
     
-    // Calculate total dividends for the year
+    // Calculate total dividends for the year based on current holdings
     const totalDividends = cumulativeStocks * dividendPerShare;
+    
+    // Calculate reinvested dividends and additional stocks if applicable
+    let reinvestedDividends = 0;
+    let stocksFromDividends = 0;
+    
+    if (reinvestDividends && currentAge < retirementAge) {
+      reinvestedDividends = totalDividends;
+      stocksFromDividends = reinvestedDividends / currentStockPrice;
+    }
+    
+    // Update cumulative stocks with both purchased and dividend-reinvested stocks
+    cumulativeStocks += stocksPurchased + stocksFromDividends;
     
     // Calculate total asset value
     const totalAssetValue = cumulativeStocks * currentStockPrice;
     
+    // For expense calculations, only use non-reinvested dividends
+    const availableDividends = reinvestDividends && currentAge < retirementAge ? 0 : totalDividends;
+    
     // Check if dividends are sufficient for yearly expenses
-    const isSufficientForLiving = totalDividends >= currentYearlyExpenses;
+    const isSufficientForLiving = availableDividends >= currentYearlyExpenses;
     
     // Calculate surplus/deficit
-    const surplus = totalDividends - currentYearlyExpenses;
+    const surplus = availableDividends - currentYearlyExpenses;
     
     // Add to results
     results.push({
@@ -63,6 +76,8 @@ export const calculateSimulation = (input: SimulationInput): SimulationResult[] 
       stockPrice: round(currentStockPrice),
       dividendPerShare: round(dividendPerShare),
       totalDividends: round(totalDividends),
+      reinvestedDividends: round(reinvestedDividends),
+      stocksFromDividends: round(stocksFromDividends),
       totalAssetValue: round(totalAssetValue),
       yearlyExpenses: round(currentYearlyExpenses),
       isSufficientForLiving,
@@ -75,7 +90,7 @@ export const calculateSimulation = (input: SimulationInput): SimulationResult[] 
     
     // Adjust for next year (growth and inflation)
     currentStockPrice *= (1 + stockPriceGrowthRate);
-    currentDividendYield *= (1 + dividendGrowthRate / 100); // Small adjustment to yield
+    currentDividendYield *= (1 + dividendGrowthRate / 100);
     currentYearlyExpenses *= (1 + inflationRate);
   }
   
