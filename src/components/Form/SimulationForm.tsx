@@ -12,7 +12,7 @@ const SimulationForm: React.FC<SimulationFormProps> = ({ onSimulate }) => {
     retirementAge: 50,
     savingsPerYear: 16000000,
     stockPrice: 22000,
-    dividendYield: 0.15,
+    dividendYield: 15,
     monthlyExpenses: 1500000
   });
 
