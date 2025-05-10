@@ -79,8 +79,8 @@ const SimulationForm: React.FC<SimulationFormProps> = ({ onSimulate }) => {
             type="number"
             value={inputs.dividendYield}
             min={0}
-            max={1}
-            step={0.01}
+            max={100}
+            step={1}
             onChange={(value) => handleInputChange('dividendYield', value)}
             suffix="%"
           />

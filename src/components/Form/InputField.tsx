@@ -26,7 +26,13 @@ const InputField: React.FC<InputFieldProps> = ({
   tooltip
 }) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newValue = parseFloat(e.target.value);
+    const raw = e.target.value;
+
+    if (raw === '') {
+      onChange(NaN);
+      return;
+    }
+    const newValue = parseFloat(raw);
     if (!isNaN(newValue)) {
       onChange(newValue);
     }

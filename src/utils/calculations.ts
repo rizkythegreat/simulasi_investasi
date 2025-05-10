@@ -22,7 +22,7 @@ export const calculateSimulation = (input: SimulationInput): SimulationResult[] 
   let currentYear = new Date().getFullYear();
   let cumulativeStocks = 0;
   let currentStockPrice = stockPrice;
-  let currentDividendYield = dividendYield;
+  let currentDividendYield = dividendYield / 100;
   let currentYearlyExpenses = yearlyExpenses;
   
   // Simulate until 30 years after retirement or 100 years old (whichever comes first)
