@@ -18,7 +18,6 @@ function App() {
     setResults(simulationResults);
     setHasSimulated(true);
     
-    // Smoothly scroll to results
     setTimeout(() => {
       document.getElementById('results-section')?.scrollIntoView({ 
         behavior: 'smooth' 
@@ -27,13 +26,13 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex flex-col transition-colors">
       <Header />
       
       <main className="flex-grow container mx-auto px-4 py-8">
         <div className="text-center mb-8">
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-900">Simulasi Investasi Saham</h1>
-          <p className="text-gray-600 max-w-2xl mx-auto mt-2">
+          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">Simulasi Investasi Saham</h1>
+          <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mt-2">
             Rencanakan masa depan finansial Anda dengan simulasi investasi saham jangka panjang.
             Lihat bagaimana tabungan dan dividen dapat mendukung gaya hidup Anda di masa pensiun.
           </p>
@@ -43,7 +42,7 @@ function App() {
         
         {hasSimulated && (
           <div className="text-center my-8 animate-bounce">
-            <ArrowDown size={24} className="mx-auto text-primary-500" />
+            <ArrowDown size={24} className="mx-auto text-primary-500 dark:text-primary-400" />
           </div>
         )}
         

@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+  darkMode: 'class',
   theme: {
     extend: {
       fontFamily: {
@@ -13,7 +14,7 @@ export default {
           200: '#99f6e4',
           300: '#5eead4',
           400: '#2dd4bf',
-          500: '#10b981', // Main primary color
+          500: '#10b981',
           600: '#059669',
           700: '#047857',
           800: '#065f46',
@@ -32,16 +33,16 @@ export default {
           900: '#4c1d95',
         },
         success: {
-          500: '#10B981', // Success green
+          500: '#10B981',
         },
         danger: {
-          500: '#EF4444', // Error red
+          500: '#EF4444',
         },
         warning: {
-          500: '#F59E0B', // Warning orange
+          500: '#F59E0B',
         },
         info: {
-          500: '#3B82F6', // Info blue
+          500: '#3B82F6',
         },
       },
       boxShadow: {
