@@ -51,7 +51,7 @@ const ResultsTable: React.FC<ResultsTableProps> = ({ results }) => {
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
             {displayedResults.map((result, index) => (
-              <tr key={index} className={index % 2 === 0 ? 'table-row-even' : 'table-row-odd'}>
+              <tr key={index} className={'table-row-odd'}>
                 <td className="table-cell">{result.year}</td>
                 <td className="table-cell">{result.age}</td>
                 <td className="table-cell">{formatCurrency(result.savingsForYear)}</td>
