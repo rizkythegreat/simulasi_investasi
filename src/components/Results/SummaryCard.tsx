@@ -62,7 +62,7 @@ const SummaryCard: React.FC<SummaryCardProps> = ({ results }) => {
             {formatNumber(lastResult.cumulativeStocks)} lembar saham
           </p>
           {totalStocksFromDividends > 0 && (
-            <p className="text-sm text-success-600 dark:text-success-400 mt-1">
+            <p className="text-sm text-primary-600 dark:text-primary-400 mt-1">
               +{formatNumber(totalStocksFromDividends)} dari reinvestasi dividen
             </p>
           )}
@@ -80,7 +80,7 @@ const SummaryCard: React.FC<SummaryCardProps> = ({ results }) => {
             pada usia {lastResult.age} tahun
           </p>
           {totalReinvestedDividends > 0 && (
-            <p className="text-sm text-success-600 dark:text-success-400 mt-1">
+            <p className="text-sm text-primary-600 dark:text-primary-400 mt-1">
               Total reinvestasi: {formatCurrency(totalReinvestedDividends)}
             </p>
           )}
