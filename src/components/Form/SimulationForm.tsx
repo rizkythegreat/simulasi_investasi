@@ -56,7 +56,7 @@ const SimulationForm: React.FC<SimulationFormProps> = ({ onSimulate }) => {
           <InputField
             id="savingsPerYear"
             label="Tabungan per Tahun"
-            type="number"
+            type="currency"
             value={inputs.savingsPerYear}
             min={0}
             step={1000000}
@@ -66,7 +66,7 @@ const SimulationForm: React.FC<SimulationFormProps> = ({ onSimulate }) => {
           <InputField
             id="stockPrice"
             label="Harga Saham"
-            type="number"
+            type="currency"
             value={inputs.stockPrice}
             min={0}
             step={100}
@@ -76,7 +76,7 @@ const SimulationForm: React.FC<SimulationFormProps> = ({ onSimulate }) => {
           <InputField
             id="dividendYield"
             label="Dividen Yield"
-            type="number"
+            type="percentage"
             value={inputs.dividendYield}
             min={0}
             max={100}
@@ -87,7 +87,7 @@ const SimulationForm: React.FC<SimulationFormProps> = ({ onSimulate }) => {
           <InputField
             id="monthlyExpenses"
             label="Biaya Hidup per Bulan"
-            type="number"
+            type="currency"
             value={inputs.monthlyExpenses}
             min={0}
             step={500000}
